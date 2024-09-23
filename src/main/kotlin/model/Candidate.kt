@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table
-class Employee() {
+class Candidate() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
@@ -12,14 +12,24 @@ class Employee() {
     var name: String = ""
     @Column
     var surname: String = ""
+    @Column
+    var email: String? = null
+    @Column
+    var telephoneNumber: String? = null
+    @ManyToOne
+    var position: Position = Position()
     @OneToOne
     var cv: File? = null
     @OneToOne
     var resume: File? = null
     @Column
-    var referedBy: String? = null;
-    @ManyToOne
-    var position: Position = Position()
+    var referredBy: String? = null;
+    @Column
+    var isApprovedByCV: Boolean = false;
+    @Column
+    var isApprovedByHRInterview: Boolean = false;
+    @Column
+    var isApprovedByInterview: Boolean = false;
 
     constructor(name: String, surname: String, position: Position) : this() {
         this.name = name

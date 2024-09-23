@@ -1,13 +1,23 @@
 package model
 
-import javax.persistence.Entity
-import javax.persistence.Id
+import javax.persistence.*
 
+@Table
 @Entity
 class Position {
     @Id
-    private var id: Long = 1
-    private var name: String = ""
-    private var salary: Double = 0.00
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0
+    @Column
+    var name: String = ""
+    @OneToOne
+    var department: Department = Department()
+    @OneToOne
+    var salary: Salary = Salary()
+    @Column
+    var description: String? = null
+    @OneToOne
+    var status: PositionStatus = PositionStatus()
+    @OneToMany
+    var candidates: List<Candidate?> = listOf()
 }
