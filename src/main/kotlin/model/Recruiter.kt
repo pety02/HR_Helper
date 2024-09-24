@@ -2,13 +2,32 @@ package model
 
 import javax.persistence.*
 
+/**
+ *
+ * @property attendanceCalendar
+ * @property assignedSurveys
+ * @property assignedTasks
+ * @author
+ */
 @Table
 @Entity
 class Recruiter() : Employee() {
     @OneToMany
-    val attendanceCalendar: List<AttendanceMonthCalendar>? = null
+    var attendanceCalendar: List<AttendanceMonthCalendar>? = null
     @OneToMany
-    val includedAtSurveys: List<Survey>? = null
+    var assignedSurveys: List<Survey>? = null
     @OneToMany
-    val assignedTasks: List<Task>? = null
+    var assignedTasks: List<Task>? = null
+
+    /**
+     * @param attendanceCalendar
+     * @param assignedSurveys
+     * @param assignedTasks
+     */
+    constructor(attendanceCalendar: List<AttendanceMonthCalendar>?, assignedSurveys: List<Survey>?,
+                assignedTasks: List<Task>?) : this() {
+        this.attendanceCalendar = attendanceCalendar
+        this.assignedSurveys = assignedSurveys
+        this.assignedTasks = assignedTasks
+    }
 }

@@ -2,6 +2,9 @@ package model
 
 import javax.persistence.*
 
+// TODO: to make private set for the id
+// TODO: general purpose constructor
+// TODO: to comment the class
 @Entity
 @Table
 open class Candidate() : User(){
@@ -25,10 +28,4 @@ open class Candidate() : User(){
     var isApprovedByHRInterview: Boolean = false;
     @Column
     var isApprovedByInterview: Boolean = false;
-
-    constructor(name: String, surname: String, position: Position) : this() {
-        this.name = name
-        this.surname = surname
-        this.position = position
-    }
 }

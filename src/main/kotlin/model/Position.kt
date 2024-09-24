@@ -2,12 +2,24 @@ package model
 
 import javax.persistence.*
 
+/**
+ *
+ * @property id
+ * @property name
+ * @property department
+ * @property salary
+ * @property description
+ * @property status
+ * @property candidates
+ * @author
+ */
 @Table
 @Entity
-class Position {
+class Position() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+    var id: Long = 0
+        private set
     @Column
     var name: String = ""
     @OneToOne
@@ -19,5 +31,26 @@ class Position {
     @OneToOne
     var status: PositionStatus = PositionStatus()
     @OneToMany
-    var candidates: List<Candidate?> = listOf()
+    var candidates: MutableList<Candidate>? = mutableListOf()
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param department
+     * @param salary
+     * @param description
+     * @param status
+     * @param candidates
+     */
+    constructor(id: Long, name: String, department: Department, salary: Salary, description: String?,
+                status: PositionStatus, candidates: MutableList<Candidate>) : this() {
+        this.id = id
+        this.name = name
+        this.department = department
+        this.salary = salary
+        this.description = description
+        this.status = status
+        this.candidates = candidates
+    }
 }

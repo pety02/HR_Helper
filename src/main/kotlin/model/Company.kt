@@ -2,12 +2,26 @@ package model
 
 import javax.persistence.*
 
+/**
+ *
+ * @property id
+ * @property name
+ * @property foundationYear
+ * @property description
+ * @property employeesCount
+ * @property departments
+ * @property openedPositions
+ * @property fund
+ * @property currency
+ * @author
+ */
 @Table
 @Entity
 class Company() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+    var id: Long = 0
+        private set
     @Column
     var name: String = ""
     @Column
@@ -15,7 +29,7 @@ class Company() {
     @Column
     var description: String? = null
     @Column
-    var employeesCount: Int? = null
+    var employeesCount: Int = 0
     @OneToMany
     var departments: List<Department>? = null
     @OneToMany
@@ -24,4 +38,30 @@ class Company() {
     var fund: Double = 0.00
     @Column
     var currency: String = ""
+
+    /**
+     *
+     * @param id
+     * @param name
+     * @param foundationYear
+     * @param description
+     * @param employeesCount
+     * @param departments
+     * @param openedPositions
+     * @param fund
+     * @param currency
+     */
+    constructor(id: Long, name: String, foundationYear: Int, description: String?,
+        employeesCount: Int, departments: List<Department>, openedPositions: List<Position>?,
+        fund: Double, currency: String) : this() {
+        this.id = id
+        this.name = name
+        this.foundationYear = foundationYear
+        this.description = description
+        this.employeesCount = employeesCount
+        this.departments = departments
+        this.openedPositions = openedPositions
+        this.fund = fund
+        this.currency = currency
+    }
 }
