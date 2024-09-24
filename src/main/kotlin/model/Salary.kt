@@ -2,20 +2,45 @@ package model
 
 import javax.persistence.*
 
+/**
+ *
+ * @property id
+ * @property nettAmount
+ * @property grossAmount
+ * @property currency
+ * @property employees
+ * @author
+ */
 @Table
 @Entity
 class Salary() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+    var id: Long = 0
+        private set
     @Column
-    var nettSalary: Double = 0.00
+    var nettAmount: Double = 0.00
     @Column
-    var grossSalary: Double = 0.00
+    var grossAmount: Double = 0.00
     @Column
     var currency: String = ""
-    @Column
-    var calculatedSalary = 0.00
     @OneToMany
-    var employees: List<Employee> = listOfNotNull()
+    var employees: MutableList<Employee> = mutableListOf()
+
+    /**
+     *
+     * @param id
+     * @param nettAmount
+     * @param grossAmount
+     * @param currency
+     * @param employees
+     */
+    constructor(id: Long, nettAmount: Double, grossAmount: Double, currency: String,
+                employees: MutableList<Employee>) : this() {
+        this.id = id
+        this.nettAmount = nettAmount
+        this.grossAmount = grossAmount
+        this.currency = currency
+        this.employees = employees
+    }
 }

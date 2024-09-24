@@ -4,16 +4,11 @@ import javax.persistence.*
 
 @Entity
 @Table
-class Candidate() {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+open class Candidate() : User(){
     @Column
     var name: String = ""
     @Column
     var surname: String = ""
-    @Column
-    var email: String? = null
     @Column
     var telephoneNumber: String? = null
     @ManyToOne
