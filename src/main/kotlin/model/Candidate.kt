@@ -1,5 +1,6 @@
 package model
 
+import java.time.LocalDate
 import javax.persistence.*
 
 /**
@@ -14,6 +15,7 @@ import javax.persistence.*
  * @property isApprovedByCV
  * @property isApprovedByHRInterview
  * @property isApprovedByInterview
+ * @property candidateDate
  * @author
  */
 @Entity
@@ -32,13 +34,15 @@ open class Candidate() : User(){
     @OneToOne
     var resume: File? = null
     @Column
-    var referredBy: String? = null;
+    var referredBy: String? = null
     @Column
-    var isApprovedByCV: Boolean = false;
+    var isApprovedByCV: Boolean = false
     @Column
-    var isApprovedByHRInterview: Boolean = false;
+    var isApprovedByHRInterview: Boolean = false
     @Column
-    var isApprovedByInterview: Boolean = false;
+    var isApprovedByInterview: Boolean = false
+    @Column
+    var candidateDate: LocalDate = LocalDate.now()
 
     /**
      *
@@ -52,10 +56,11 @@ open class Candidate() : User(){
      * @param isApprovedByCV
      * @param isApprovedByHRInterview
      * @param isApprovedByInterview
+     * @param candidateDate
      */
     constructor(name: String, surname: String, telephoneNumber: String?, position: Position,
                 cv: File?, resume: File?, referredBy: String?, isApprovedByCV: Boolean,
-                isApprovedByHRInterview: Boolean, isApprovedByInterview: Boolean) : this() {
+                isApprovedByHRInterview: Boolean, isApprovedByInterview: Boolean, candidateDate: LocalDate) : this() {
         this.name = name
         this.surname = surname
         this.telephoneNumber = telephoneNumber
@@ -66,5 +71,6 @@ open class Candidate() : User(){
         this.isApprovedByCV = isApprovedByCV
         this.isApprovedByHRInterview = isApprovedByHRInterview
         this.isApprovedByInterview = isApprovedByInterview
+        this.candidateDate = candidateDate
     }
 }
