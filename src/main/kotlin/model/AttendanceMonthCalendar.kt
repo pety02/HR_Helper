@@ -3,9 +3,15 @@ package model
 import java.time.LocalDate
 import javax.persistence.*
 
-// TODO: to make private set for the id
-// TODO: general purpose constructor
-// TODO: to comment the class
+/**
+ *
+ * @property id
+ * @property monthNo
+ * @property year
+ * @property vacationDays
+ * @property recruiter
+ * @author
+ */
 @Table
 @Entity
 class AttendanceMonthCalendar() {
@@ -13,7 +19,8 @@ class AttendanceMonthCalendar() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+    var id: Long = 0
+        private set
     @Column
     var monthNo: Int = currentDate.monthValue
     @Column
@@ -22,4 +29,20 @@ class AttendanceMonthCalendar() {
     var vacationDays: List<Vacation>? = null
     @OneToOne
     var recruiter: Recruiter = Recruiter()
+
+    /**
+     *
+     * @param id
+     * @param monthNo
+     * @param year
+     * @param vacationDays
+     * @param recruiter
+     */
+    constructor(id: Long, monthNo: Int, year: Int, vacationDays: List<Vacation>?, recruiter: Recruiter) : this() {
+        this.id = id
+        this.monthNo = monthNo
+        this.year = year
+        this.vacationDays = vacationDays
+        this.recruiter = recruiter
+    }
 }

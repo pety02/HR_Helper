@@ -2,9 +2,20 @@ package model
 
 import javax.persistence.*
 
-// TODO: to make private set for the id
-// TODO: general purpose constructor
-// TODO: to comment the class
+/**
+ *
+ * @property name
+ * @property surname
+ * @property telephoneNumber
+ * @property position
+ * @property cv
+ * @property resume
+ * @property referredBy
+ * @property isApprovedByCV
+ * @property isApprovedByHRInterview
+ * @property isApprovedByInterview
+ * @author
+ */
 @Entity
 @Table
 open class Candidate() : User(){
@@ -28,4 +39,32 @@ open class Candidate() : User(){
     var isApprovedByHRInterview: Boolean = false;
     @Column
     var isApprovedByInterview: Boolean = false;
+
+    /**
+     *
+     * @param name
+     * @param surname
+     * @param telephoneNumber
+     * @param position
+     * @param cv
+     * @param resume
+     * @param referredBy
+     * @param isApprovedByCV
+     * @param isApprovedByHRInterview
+     * @param isApprovedByInterview
+     */
+    constructor(name: String, surname: String, telephoneNumber: String?, position: Position,
+                cv: File?, resume: File?, referredBy: String?, isApprovedByCV: Boolean,
+                isApprovedByHRInterview: Boolean, isApprovedByInterview: Boolean) : this() {
+        this.name = name
+        this.surname = surname
+        this.telephoneNumber = telephoneNumber
+        this.position = position
+        this.cv = cv
+        this.resume = resume
+        this.referredBy = referredBy
+        this.isApprovedByCV = isApprovedByCV
+        this.isApprovedByHRInterview = isApprovedByHRInterview
+        this.isApprovedByInterview = isApprovedByInterview
+    }
 }

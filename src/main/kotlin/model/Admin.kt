@@ -4,9 +4,12 @@ import javax.persistence.Entity
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
-// TODO: to make private set for the id
-// TODO: general purpose constructor
-// TODO: to comment the class
+/**
+ *
+ * @property assignedSurveys
+ * @property assignedTasks
+ * @author
+ */
 @Table
 @Entity
 class Admin() : Employee() {
@@ -14,4 +17,14 @@ class Admin() : Employee() {
     var assignedSurveys: List<Survey>? = null
     @OneToMany
     var assignedTasks: List<Task>? = null
+
+    /**
+     *
+     * @param assignedSurveys
+     * @param assignedTasks
+     */
+    constructor(assignedSurveys: List<Survey>?, assignedTasks: List<Task>?) : this() {
+        this.assignedSurveys = assignedSurveys
+        this.assignedTasks = assignedTasks
+    }
 }
